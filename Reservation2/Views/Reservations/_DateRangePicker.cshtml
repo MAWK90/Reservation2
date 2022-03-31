@@ -1,0 +1,68 @@
+﻿<script type="text/javascript">
+
+    $(function() {
+
+     //  JSON from URL
+    $.ajax({
+            'async': false,
+            'global': false,
+            'url': "https://localhost:7123/Reservations/GetReservationDateRangesJson",
+            'dataType': "json",
+            'success': function (data) {
+                dateRanges = data;
+    }});
+
+    var date = new Date();
+    var currentMonth = date.getMonth();
+    var currentDate = date.getDate();
+    var currentYear = date.getFullYear();
+
+      $('input[name="datefilter"]').daterangepicker({
+          autoUpdateInput: false,
+          locale: {
+              cancelLabel: 'Wyczyść',
+              applyLabel: 'Wybierz',
+              format: 'DD.MM.YYYY'
+              },
+          minDate: new Date(currentYear, currentMonth, currentDate),
+          dateFormat: 'dd.mm.yyyy',
+          startDate: moment(date).add(0,'days'),
+          //endDate: moment(date).add(,'days'),
+          isInvalidDate: function(date) {
+
+                    return dateRanges.reduce(function(bool, range) {
+                            //return bool || (date >= moment(range.start).add(1, 'days') && date <= moment(range.end).add(-1, 'days'));
+                            return bool || (date >= moment(range.start) && date <= moment(range.end));
+                    }, false);
+          }
+      });
+
+      $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+          $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+          document.getElementById('StartOfReservation').value = picker.startDate.format('YYYY-MM-DD');
+          document.getElementById('EndOfReservation').value = picker.endDate.format('YYYY-MM-DD');
+          //@Html.HiddenFor(model => model.StartOfReservation);
+          //@Html.HiddenFor(model => model.EndOfReservation);
+          
+
+          //@Model()
+
+          //$.post("@Url.Action("Create","Reservations")", {
+          //    StartOfReservation : picker.startDate.format('YYYY-MM-DD'),
+          //    EndOfReservation : picker.endDate.format('YYYY-MM-DD')},
+          //    function(res){
+          //      //$("#SomeDivToShowTheResult").html(res);
+          //});
+      });
+
+      $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+          $(this).val('');
+      });
+
+
+
+
+    });
+</script>
+
+
