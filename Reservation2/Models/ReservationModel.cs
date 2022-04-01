@@ -31,19 +31,20 @@ namespace Reservation2.Models
         public string Email { get; set; } = string.Empty;
 
 
-        [Required(ErrorMessage = "Brak daty rozpoczęcia rezerwacji")]
+        [Required(ErrorMessage = "Brak okresu pobytu")]
         [Display(Name = "Początek rezerwacji")]
         [DataType(DataType.Date)]
         public DateTime StartOfReservation { get; set; } = DateTime.Now;
 
 
-        [Required(ErrorMessage = "Brak daty zakończenia rezerwacji")]
         [Display(Name = "Koniec rezerwacji")]
         [DataType(DataType.Date)]
         public DateTime EndOfReservation { get; set; } = DateTime.Now;
 
+
         [Display(Name = "Zaliczka")]
         public int? Prepayment { get; set; } = 0;
+
 
         [Display(Name = "Zapłacono")]
         public int? Payment { get; set; } = 0;
@@ -54,12 +55,14 @@ namespace Reservation2.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime? CreatedDate = DateTime.Now;
 
+
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime? LastUpdateDate = DateTime.Now;
        
 
         [Display(Name = "Dodatkowe informacje")]
         public string? AdditionalInfo { get; set; }
+
 
         [Display(Name = "Notatka")]
         public string? Notes { get; set; }
@@ -71,18 +74,8 @@ namespace Reservation2.Models
             var property = new[] { "EndOfReservation" };
             if (EndOfReservation < StartOfReservation)
             {
-                yield return new ValidationResult("End must be after start", property);
+                yield return new ValidationResult("Koniec musi być przed startem.", property);
             }
-
-
-            //foreach (var dayString in reservedDays)
-            //{
-            //    var day = DateTime.Parse(dayString);
-            //    if (StartOfReservation < day && day < EndOfReservation)
-            //    {
-            //        yield return new ValidationResult("This date is reserved", property);
-            //    }
-            //}
 
         }
 
