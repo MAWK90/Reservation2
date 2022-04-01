@@ -1,4 +1,5 @@
-﻿<script type="text/javascript">
+﻿@model Reservation2.Models.ReservationModel
+<script type="text/javascript">
 
     $(function() {
 
@@ -16,6 +17,8 @@
     var currentMonth = date.getMonth();
     var currentDate = date.getDate();
     var currentYear = date.getFullYear();
+    //var StartOfReservation; 
+    //var EndOfReservation;
 
       $('input[name="datefilter"]').daterangepicker({
           autoUpdateInput: false,
@@ -39,27 +42,19 @@
 
       $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
           $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-          document.getElementById('StartOfReservation').value = picker.startDate.format('YYYY-MM-DD');
-          document.getElementById('EndOfReservation').value = picker.endDate.format('YYYY-MM-DD');
-          //@Html.HiddenFor(model => model.StartOfReservation);
-          //@Html.HiddenFor(model => model.EndOfReservation);
+
+          StartOfReservation.value = picker.startDate.format('YYYY-MM-DD')
+          EndOfReservation.value = picker.endDate.format('YYYY-MM-DD')//.trigger("change");
+
+         // $(this).onchange();
           
-
-          //@Model()
-
-          //$.post("@Url.Action("Create","Reservations")", {
-          //    StartOfReservation : picker.startDate.format('YYYY-MM-DD'),
-          //    EndOfReservation : picker.endDate.format('YYYY-MM-DD')},
-          //    function(res){
-          //      //$("#SomeDivToShowTheResult").html(res);
-          //});
+   
       });
-
+      
+      
       $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
           $(this).val('');
       });
-
-
 
 
     });

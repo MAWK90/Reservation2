@@ -37,12 +37,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="StartOfReservation" class="control-label"></label>
-                <input asp-for="StartOfReservation" class="form-control" name="datefilter"/>
+                <input asp-for="StartOfReservation" class="form-control" name="datefilter" data-date-format="yyyy-MM-dd"/>
                 <span asp-validation-for="StartOfReservation" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EndOfReservation" class="control-label"></label>
-                <input asp-for="EndOfReservation" class="form-control" name="datefilter"/>
+                <input asp-for="EndOfReservation" type="hidden" class="form-control" name="datefilter" data-date-format="yyyy-MM-dd"/>
                 <span asp-validation-for="EndOfReservation" class="text-danger"></span>
             </div>
             <div class="form-group">

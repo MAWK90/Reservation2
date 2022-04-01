@@ -34,14 +34,14 @@ namespace Reservation2.Models
         [Required(ErrorMessage = "Brak daty rozpoczęcia rezerwacji")]
         [Display(Name = "Początek rezerwacji")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime StartOfReservation { get; set; } = DateTime.Now;
 
 
         [Required(ErrorMessage = "Brak daty zakończenia rezerwacji")]
         [Display(Name = "Koniec rezerwacji")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime EndOfReservation { get; set; } = DateTime.Now;
 
         [Display(Name = "Zaliczka")]
