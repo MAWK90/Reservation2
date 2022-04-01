@@ -43,12 +43,9 @@
       $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
           $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
 
-          StartOfReservation.value = picker.startDate.format('YYYY-MM-DD')
-          EndOfReservation.value = picker.endDate.format('YYYY-MM-DD')//.trigger("change");
+          StartOfReservation.value = picker.startDate.format('YYYY-MM-DD');
+          EndOfReservation.value = picker.endDate.format('YYYY-MM-DD');
 
-         // $(this).onchange();
-          
-   
       });
       
       
