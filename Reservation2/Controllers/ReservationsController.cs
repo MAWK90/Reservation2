@@ -1,12 +1,6 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using Reservation2.Models;
 
 namespace Reservation2
@@ -36,7 +30,6 @@ namespace Reservation2
             {
                 var start = reservation.StartOfReservation.AddDays(1).ToString("yyyy-MM-dd");
                 var end = reservation.EndOfReservation.AddDays(-1).ToString("yyyy-MM-dd");
-
 
                 var res = new ReservationClass
                 {

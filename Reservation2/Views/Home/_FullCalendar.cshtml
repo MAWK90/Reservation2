@@ -1,0 +1,26 @@
+﻿<script>
+    function getWidth() {
+    return Math.max(
+        document.body.scrollWidth,
+        document.documentElement.scrollWidth,
+        document.body.offsetWidth,
+        document.documentElement.offsetWidth,
+        document.documentElement.clientWidth
+    );
+}
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+             eventSources: [{
+                  url: '/Reservations/GetReservationDateRangesJson/', // use the `url` property
+                  color: 'red',    // an option!
+                  textColor: 'black',  // an option!
+                  allDay: true,
+                  display: 'background',
+            }] 
+      });
+      calendar.render();
+    });
+
+</script>

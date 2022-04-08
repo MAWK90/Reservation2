@@ -1,8 +1,27 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Reservations ";
+}
+ <div id='calendar'></div>
+
+ <!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link href='~/lib/fullcalendar/main.css' rel='stylesheet' />
+    <script src='/lib/fullcalendar/main.js'></script>
+  </head>
+  <body>
+    <div id='calendar'></div>
+  </body>
+</html>
+
+@section Scripts {
+    
+    @{ 
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        await Html.RenderPartialAsync("_FullCalendar");
+    }
+
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    

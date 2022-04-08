@@ -10,17 +10,20 @@ namespace Reservation2.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Imię jest wymagane.")]
+        [StringLength(20)]
         [Display(Name = "Imie")]
         public string Name { get; set; } = string.Empty;
 
 
         [Required(ErrorMessage = "Nazwisko jest wymagane.")]
+        [StringLength(50)]
         [Display(Name = "Nazwisko")]
         public string Surname { get; set; } = string.Empty;
 
 
         [Required(ErrorMessage = "Numer telefonu jest wymagany.")]
         [Phone(ErrorMessage = "Nieprawidłowy numer telefonu.")]
+        [StringLength(15)]
         [Display(Name = "Telefon")]
         public string Phone { get; set; } = string.Empty;
 

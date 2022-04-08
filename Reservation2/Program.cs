@@ -2,13 +2,24 @@
 using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<DbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DbContext")));
+var serverVersion = ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DbContext"));
+
+builder.Services.AddDbContext<DbContext>(
+            dbContextOptions => dbContextOptions
+                .UseMySql(builder.Configuration.GetConnectionString("DbContext"), serverVersion)
+                // The following three options help with debugging, but should
+                // be changed or removed for production.
+                .LogTo(Console.WriteLine, LogLevel.Information)
+                .EnableSensitiveDataLogging()
+                .EnableDetailedErrors()
+        );
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
